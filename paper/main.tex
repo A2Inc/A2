@@ -397,15 +397,10 @@ stand-alone, production-grade application by it \cite{SpringBo66:online}. Becaus
 and no requirement for XML configuration, it is the best choose for a Java development team.
 
 \subsection{Oauth github}
-GitHub's OAuth implementation supports standard authorization code type or OAuth2 device Authorization
-for apps that do not have access to a web browser. If you want to skip authorizing your app in
-standard method, for example, when testing app, you are able to apply the non-web application flow/
 If you want to create an OAuth Application in GitHub, client will need to log into Github, visit
 the Applications page under your organisation's settings, click Register 'New Application',
 set HomePage URL: Enter the Quay Enterprise URL as the HomePage URL, finally, save your settings by
-clicking the Register application button. An OAuth App could be used as an identity provider by enabling
-a "Login with GitHub" as for the authenticated user. Do not build an OAuth app if you want your
-application to act on a single repository. With the repo OAuth scope, OAuth apps is able to act on
+clicking the Register application button. With the repo OAuth scope, OAuth apps is able to act on
 all of the authenticated user's repositories. If you want to register for OAuth application,
 in the upper-right corner of any page, click your profile photo, then click Setting, in the
 left side bar, click Developer settings, in the left side bar, click OAuth Apps, click New
@@ -680,7 +675,6 @@ imagery, Python has a lot of easy libraries for geospatial calculating. GDAL is 
 It is integrated with Python very well, and is very good at reading and writing raster or vector geospatial file formats.
 There are also some people opening the processing sourcecode \cite{Howtopro5:online}.
 
-
 \begin{figure}[htbp]
     \centerline{\includegraphics[width=260pt]{images/dataprocess.png}}
     \caption{Imagery processing in AWS}
@@ -706,7 +700,6 @@ sutiable value. At the end, all of the processed information is stored in RDS se
 When it comes to the RDS, it is neccessary to introduce the master and slave configuration. Because this global night lights data is stored at us-east-1 region and team members 
 use ap-southeast-1 region, master database is installed at us-east-1 region which is closed to S3 data, and slave database is at another region. The cross-region RDS is 
 provisioned by CloudFormation because there is a ready template. It has to be mentioned that the cross-region cost is not cheap as other services.
-
 
 \subsection{Testing}
 Use Postman testing tool to test this website. The security testing of Web application system have:
