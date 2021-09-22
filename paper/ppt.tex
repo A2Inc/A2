@@ -16,12 +16,11 @@
 \subtitle{The visualisation of average radiance in 3 areas}
 \date{\today}
 % \date{}
-\author{Zhen Chen (John)}
-\institute{A2 Inc}
+\author{Zhen Chen (John), Huajie Xu, Shengzhu Wang, Wenjie Tong, SiXiang Xiong}
+% \institute{A2 Inc}
 \titlegraphic{\hfill\includegraphics[height=1.5cm]{images/logo.png}}
 
-\begin{document}
-
+\begin{document} 
 \maketitle
 
 \begin{frame}{}
@@ -29,7 +28,7 @@
   \tableofcontents[hideallsubsections]
 \end{frame}
 
-\section{Introduction of the background}
+\section{Introduction to ackground}
 
 \begin{frame}[fragile]{Background: World Bank Nightime Light Data}
 
@@ -72,7 +71,7 @@
     \column{0.5\textwidth}
     
     \begin{figure}[htbp]
-      \centerline{\includegraphics[width=170pt]{images/STAC.png}}
+      \centerline{\includegraphics[width=160pt]{images/STAC.png}}
       \caption{STAC of Global ngiht lights}
       \label{STAC}
     \end{figure}
@@ -89,7 +88,7 @@
     Our objective is to build a demo to show the ngihttime lights status in 3 specific areas.
     \column{0.5\textwidth}
       \begin{figure}[htbp]
-        \centerline{\includegraphics[width=140pt]{images/Worldmap.png}}
+        \centerline{\includegraphics[width=130pt]{images/Worldmap.png}}
         \caption{3 areas we researched}
         \label{areas}
       \end{figure}
@@ -98,48 +97,184 @@
 
 \section{Architecture}
 
-\begin{frame}[fragile]{AWS}
-
+\begin{frame}[fragile]{Architecture}
   
   \begin{figure}[htbp]
-    \centerline{\includegraphics[width=260pt]{images/arch.png}}
+    \centerline{\includegraphics[width=220pt]{images/arch.png}}
     \caption{Architecture}
     \label{fig2}
   \end{figure}
 
 \end{frame}
 
-\begin{frame}[fragile]{Services}
+\begin{frame}[fragile]{Architecture: Backend}
 
-  \begin{itemize}
-    \item EC2
-    \item RDS
-    \item Lambda
-  \end{itemize}
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{figure}[htbp]
+        \centerline{\includegraphics[width=220pt]{images/arch.png}}
+        \caption{Architecture}
+        \label{arch}
+      \end{figure}
+    \column{0.5\textwidth}
+      \begin{itemize}
+        \item EC2: Nginx*2 + Tomcat*2
+        \pause
+        \item RDS: MySQL
+        \pause
+        \item Secrets Manager: store the password
+        \pause
+        \item Lambda: generating passwords \& processing imagery
+        \pause
+        \item SQS: supporting Lambda fucntions
+        \pause
+        \item ELB \& NAT: entrance of the demo
+        \pause
+        \item Others: CloudFormation, CloudWatch, MySQL replica, IAM, S3 etc.
+      \end{itemize}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}[fragile]{Architecture: Frontend}
+
+  \begin{columns}
+    \column{0.5\textwidth}
+% Picture insert here
+      \begin{figure}[htbp]
+        \centerline{\includegraphics[width=220pt]{images/arch.png}}
+        \caption{Architecture}
+       \end{figure}
+
+    \column{0.5\textwidth}
+      \begin{itemize}
+% One item one page
+        \item EC2: Nginx*2 + Tomcat*2
+        \pause
+        \item RDS: MySQL
+      \end{itemize}
+  \end{columns}
 
 \end{frame}
 
-\begin{frame}[fragile]{security implementation}
+\section{Security implementation}
 
-  \begin{itemize}
-    \item IAM
-    \item network
-    \item data security
-  \end{itemize}
+\begin{frame}[fragile]{Security implementation: Frontend}
+
+  \begin{columns}
+    \column{0.5\textwidth}
+% Picture insert here
+      \begin{figure}[htbp]
+        \centerline{\includegraphics[width=220pt]{images/roles.png}}
+        \caption{Roles}
+      \end{figure}
+
+    \column{0.5\textwidth}
+      \begin{itemize}
+% One item one page
+        \item open the MFA login
+        \item divide into Roles: team members \& services
+        \item least privileges
+        \pause
+        \item Users: Github Oauth.
+        
+      \end{itemize}
+  \end{columns}
 
 \end{frame}
 
-\section{Security}
+\begin{frame}[fragile]{Security implementation: IAM}
 
-\begin{frame}[fragile]{security implementation}
-
-  \begin{itemize}
-    \item IAM
-    \item network
-    \item data security
-  \end{itemize}
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{figure}[htbp]
+        \centerline{\includegraphics[width=220pt]{images/roles.png}}
+        \caption{Roles}
+        \label{roles}
+      \end{figure}
+    \column{0.5\textwidth}
+      \begin{itemize}
+        \item open the MFA login
+        \item divide into Roles: team members \& services
+        \item least privileges
+        \pause
+        \item Users: Github Oauth.
+      \end{itemize}
+  \end{columns}
 
 \end{frame}
+
+
+\begin{frame}[fragile]{Security implementation: Network}
+
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{figure}[htbp]
+        
+        \centerline{\includegraphics[width=200pt]{images/subnet.png}}
+        \caption{Subnet}
+
+        \centerline{\includegraphics[width=200pt]{images/security.png}}
+        \caption{Security groups}
+
+      \end{figure}
+    \column{0.5\textwidth}
+      \begin{itemize}
+        \item isolate public IP instances with others by subnet
+        \pause
+        \item 3 different subnets used for services in different layers
+        \pause
+        \item 3 zones are divided into 3 subnets
+      \end{itemize}
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Security implementation: Data security}
+
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{figure}[htbp]
+        \centerline{\includegraphics[width=180pt]{images/matrix.png}}
+        \caption{Entitlement matrix}
+      \end{figure}
+    \column{0.5\textwidth}
+      \begin{itemize}
+        \item Identification \& Category: public original data, imagery data after processing, user data
+        \pause
+        \item Admin account is the supper administrator
+        \pause
+        \item Encryption: HTTPS \& RDS KMS \& GitHub Oauth
+      \end{itemize}
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Security implementation: Testing}
+
+  \begin{columns}
+    \column{0.5\textwidth}
+% Picture insert here
+      \begin{figure}[htbp]
+        \centerline{\includegraphics[width=180pt]{images/matrix.png}}
+        \caption{Entitlement matrix}
+      \end{figure}
+
+    \column{0.5\textwidth}
+      \begin{itemize}
+% One item one page
+        \item Identification \& Category: public original data, imagery data after processing, user data
+        \pause
+        \item Admin account is the supper administrator
+        
+      \end{itemize}
+  \end{columns}
+
+\end{frame}
+
+\section{Video time}
 
 \section{Reference}
 
@@ -147,6 +282,12 @@
 
    \printbibliography[heading=none]
  
+\end{frame}
+
+\begin{frame}{}
+  \textbf{Thanks}
+  
+  \textbf{Q\&A}
 \end{frame}
 
 \end{document}
