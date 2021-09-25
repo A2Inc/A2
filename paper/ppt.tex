@@ -157,6 +157,40 @@
 
 \end{frame}
 
+\begin{frame}[fragile]{Architecture: Frontend Technical basis}
+
+	\begin{figure}[htbp]
+		\centerline{\includegraphics[width=220pt]{images/VueAndD3.png}}
+        \caption{Vue.js + D3.js}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Architecture: Frontend Function}
+
+  \begin{columns}
+    \column{0.66\textwidth}
+      \begin{figure}[htbp]
+        \centerline{\includegraphics[width=220pt]{images/Interaction_of_visualization.png}}
+        \caption{Data visualization}
+       \end{figure}
+
+    \column{0.33\textwidth}
+      \begin{itemize}
+        \item 3rd party login
+        \pause
+        \item Data visualization
+		\pause
+		\item (1) Line chart
+		\pause
+		\item (2) World map
+		\pause
+		\item (3) Interaction
+      \end{itemize}
+  \end{columns}
+
+\end{frame}
+
 \section{Security implementation}
 
 \begin{frame}[fragile]{Security implementation: Frontend}
@@ -178,6 +212,31 @@
         \pause
         \item Users: Github Oauth.
         
+      \end{itemize}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}[fragile]{Security implementation: Frontend}
+
+  \begin{columns}
+    \column{0.5\textwidth}
+	  \begin{itemize}
+        \item What Vue Does to Protect You
+        \pause
+        \item HTML content is automatically escaped.
+        \item Attribute bindings are also automatically escaped.
+      \end{itemize}
+
+    \column{0.5\textwidth}
+      \begin{itemize}
+        \item Business perspective
+		\pause
+        \item No user-provided content
+        \pause
+        \item No state change
+		\pause
+		\item httpOnly Cookies
       \end{itemize}
   \end{columns}
 
