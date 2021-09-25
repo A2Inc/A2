@@ -136,31 +136,10 @@
 
 \end{frame}
 
-\begin{frame}[fragile]{Architecture: Frontend}
-
-  \begin{columns}
-    \column{0.5\textwidth}
-% Picture insert here
-      \begin{figure}[htbp]
-        \centerline{\includegraphics[width=220pt]{images/arch.png}}
-        \caption{Architecture}
-       \end{figure}
-
-    \column{0.5\textwidth}
-      \begin{itemize}
-% One item one page
-        \item EC2: Nginx*2 + Tomcat*2
-        \pause
-        \item RDS: MySQL
-      \end{itemize}
-  \end{columns}
-
-\end{frame}
-
 \begin{frame}[fragile]{Architecture: Frontend Technical basis}
 
 	\begin{figure}[htbp]
-		\centerline{\includegraphics[width=220pt]{images/VueAndD3.png}}
+		\centerline{\includegraphics[width=200pt]{images/VueAndD3.png}}
         \caption{Vue.js + D3.js}
     \end{figure}
 
@@ -192,30 +171,6 @@
 \end{frame}
 
 \section{Security implementation}
-
-\begin{frame}[fragile]{Security implementation: Frontend}
-
-  \begin{columns}
-    \column{0.5\textwidth}
-% Picture insert here
-      \begin{figure}[htbp]
-        \centerline{\includegraphics[width=220pt]{images/roles.png}}
-        \caption{Roles}
-      \end{figure}
-
-    \column{0.5\textwidth}
-      \begin{itemize}
-% One item one page
-        \item open the MFA login
-        \item divide into Roles: team members \& services
-        \item least privileges
-        \pause
-        \item Users: Github Oauth.
-        
-      \end{itemize}
-  \end{columns}
-
-\end{frame}
 
 \begin{frame}[fragile]{Security implementation: Frontend}
 
@@ -266,7 +221,7 @@
 
 \begin{frame}[fragile]{Security implementation: Network}
 
-  \begin{columns}
+  \begin{columns} 
     \column{0.5\textwidth}
       \begin{figure}[htbp]
         
